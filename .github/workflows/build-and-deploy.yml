@@ -1,5 +1,14 @@
 name: Simple Web Build and Deploy
 
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+permissions:
+      id-token: write
+      contents: read
+      
 env:
   AZURE_WEBAPP_NAME: simpledbdemoweb    # set this to the name of your Azure Web App
   AZURE_WEBAPP_PACKAGE_PATH: '.'      # set this to the path to your web app project, defaults to the repository root
@@ -7,15 +16,6 @@ env:
   SECRET_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
   SECRET_TENANT_ID:  ${{ secrets.AZURE_TENANT_ID }}
   SECRET_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-  
-on:
-  push:
-    branches: [ "main" ]
-  workflow_dispatch:
-
-permissions:
-  id-token: write
-  contents: read
 
 jobs:
   build:
